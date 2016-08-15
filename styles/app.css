@@ -1,0 +1,17 @@
+body{
+    margin: 0; padding: 0;
+    height: 100%; width: 100%;
+}
+.full{
+    height: 100%; width: 100%;
+}
+.full input, .full textarea{
+    width: 100%;
+    min-height: 3em;
+}
+.switch{
+    display: none;
+}
+.switch.on{
+    display: block;
+}
