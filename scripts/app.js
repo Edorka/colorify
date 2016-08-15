@@ -1,13 +1,15 @@
 "use strict";
 
-var SETTINGS = {};
-
 var app = document.app = (function(settings){
+    var SETTINGS = {
+        validColors: validCSSColors
+    };
     settings = settings || SETTINGS;
-
     var textEntry = null, textOutput = null;
+    var saveButton = null;
     var containers = [];
-    var colorsStyle = null
+    var colorsStyle = null;
+    var errorsList = null, colorsInput = null;
     function init(){
         console.log(event, this);
         textEntry = document.getElementById('text-entry'); 
@@ -15,7 +17,38 @@ var app = document.app = (function(settings){
         document.getElementById('edition').classList.add('on');
         containers = document.getElementsByClassName('switch');
         colorsStyle = document.getElementById('colors');
-        
+        colorsInput = document.getElementById('colors-input');
+        saveButton = document.getElementById('save-button');
+        errorsList = document.getElementById('errors-list');
+    }
+    var nameSeqEx = /^([a-zA-Z]+)((?:,\s?)?[a-zA-Z]+)*$/;
+    function verifyColors(input, event){
+        console.log(input.value);
+        var errors = [];
+        console.log('names', names);
+        if (!  input.value.match(nameSeqEx) ){
+            errors = errors || {};
+            errors.push('insert color names separated by a comma');
+        } else {
+            var names = input.value.split(', ');
+            for (var current = 0; current < names.length; current ++){
+                var name = names[current];
+                if ( settings.validColors.indexOf(name) === -1 ){
+                    errors.push('color '+ name +' is not recognized as color');
+                }
+            }
+        } 
+        var list = "";
+        if ( errors.length > 0 ){
+            for (var current = 0; current < errors.length; current ++){
+                var error = errors[current];
+                list += '<li>'+error;
+            }
+            saveButton.disabled = true;
+        } else {
+            saveButton.disabled = false;
+        }
+        errorsList.innerHTML = list;
     }
     function colors(colors){
         colors = colors || [];
@@ -45,7 +78,7 @@ var app = document.app = (function(settings){
         return result;
     }
     function save(){
-        var classes = colors(['red', 'blue']);
+        var classes = colors(colorsInput.value.split(', '));
         var source = textEntry.value;
         var lastClass = null;
         for (var current = 0; current < source.length; current ++){
@@ -74,9 +107,11 @@ var app = document.app = (function(settings){
         edit: edit,
         save: save,
         colors: colors,
-        switchTo: switchTo      
+        switchTo: switchTo,
+        verifyColors: verifyColors     
     };
     return _methods;
 }());
 
 document.addEventListener("DOMContentLoaded", app.init);
+

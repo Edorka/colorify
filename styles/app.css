@@ -4,14 +4,20 @@ body{
 }
 .full{
     height: 100%; width: 100%;
+    padding: 1em;
+    box-sizing: border-box;
 }
 .full input, .full textarea{
     width: 100%;
     min-height: 3em;
 }
+
 .switch{
     display: none;
 }
 .switch.on{
     display: block;
+}
+#errors-list{
+    color: dark-red;
 }
