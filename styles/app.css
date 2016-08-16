@@ -1,6 +1,11 @@
 body{
     margin: 0; padding: 0;
     height: 100%; width: 100%;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
 }
 .full{
     height: 100%; width: 100%;
@@ -9,7 +14,23 @@ body{
 }
 .full input, .full textarea{
     width: 100%;
-    min-height: 3em;
+    box-sizing: border-box;
+}
+input, textarea{
+    padding: 0.2em 0.5em;
+    margin: 0.2em 0;
+}
+input[type="button"]{
+    color: #fff;
+    background-color: #337ab7;
+    background-image: none;
+    border-color: #2e6da4;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+.full textarea{
+    min-height: 5em;
 }
 
 .switch{
@@ -19,5 +40,5 @@ body{
     display: block;
 }
 #errors-list{
-    color: dark-red;
+    color: darkred;
 }

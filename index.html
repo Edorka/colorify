@@ -12,14 +12,15 @@
 </head>
 <body>
     <div id="edition" class="full switch">
-        <input id="colors-input" type="text" name="colors" value="red, blue" 
-            onkeyup="app.verifyColors(this, event)"
-        />
-        <ul id="errors-list"></ul>
+
         <textarea name="text" id="text-entry">
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
         </textarea>
+        <input id="colors-input" type="text" name="colors" value="red, blue" 
+            onkeyup="app.verifyColors(this, event)"
+        />
         <input id="save-button" type="button" name="save" value="Save" onclick="app.save()" />
+        <ul id="errors-list"></ul>
     </div>
     <div id="output" class="full switch">
         <style id="colors"> </style>

@@ -81,12 +81,18 @@ var app = document.app = (function(settings){
         var classes = colors(colorsInput.value.split(', '));
         var source = textEntry.value;
         var lastClass = null;
+        var html = '';
         for (var current = 0; current < source.length; current ++){
             var letter = source[current];
+            if ( letter === ' ' ){
+                html += ' ';
+                continue;
+            }
             var colorClass = randomChoice(classes, /*except*/lastClass);
             lastClass = colorClass;
-            textOutput.innerHTML += '<span class="'+colorClass+'">'+letter+'</span>';
+            html += '<span class="'+colorClass+'">'+letter+'</span>';
         } 
+        textOutput.innerHTML = html;
         switchTo('output');
     }
     function edit(){
